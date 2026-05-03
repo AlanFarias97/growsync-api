@@ -1,0 +1,30 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: growsync-postgres
+    environment:
+      POSTGRES_DB: growsync
+      POSTGRES_USER: growsync
+      POSTGRES_PASSWORD: growsync123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio
+    container_name: growsync-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: growsync
+      MINIO_ROOT_PASSWORD: growsync123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  postgres_data:
+  minio_data:
