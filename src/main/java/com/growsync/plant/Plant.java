@@ -1,11 +1,13 @@
 package com.growsync.plant;
 
+import com.growsync.dailyreport.DailyReport;
 import com.growsync.grow.Grow;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "plants")
@@ -41,6 +43,9 @@ public class Plant {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "plant")
+    private List<DailyReport> reports;
 
     @PrePersist
     public void prePersist() {
