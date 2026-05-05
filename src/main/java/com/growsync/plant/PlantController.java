@@ -28,4 +28,10 @@ public class PlantController {
 
         return plantService.findByGrow(growId);
     }
+
+    @GetMapping("")
+    public List<PlantResponse> findAll(
+    ) {
+        return plantService.findAll();
+    }
 }

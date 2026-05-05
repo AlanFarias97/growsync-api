@@ -1,3 +1,12 @@
 spring:
   application:
     name: growsync-api
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+minio:
+  url: http://localhost:9000
+  access-key: growsync
+  secret-key: growsync123
+  bucket-name: growsync

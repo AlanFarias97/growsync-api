@@ -70,10 +70,25 @@ public class PlantService {
                 .toList();
     }
 
+    public List<PlantResponse> findAll() {
+
+        String email = SecurityUtils.getCurrentUserEmail();
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow();
+
+
+        return plantRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
     private PlantResponse mapToResponse(Plant plant) {
 
         return new PlantResponse(
                 plant.getId(),
+                plant.getGrow().getId(),
                 plant.getName(),
                 plant.getStrain(),
                 plant.getStage(),
